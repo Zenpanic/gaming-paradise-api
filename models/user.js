@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -34,29 +33,5 @@ const userSchema = new mongoose.Schema({
 },
     { timestamps: true }
 );
-
-/* // virtual field
-
-userSchema.virtual('password')
-    .set((password) => {
-        this._password = password;
-        this.salt = bcrypt.genSaltSync(10);
-        console.log('ok');
-        this.hashed_password = this.encryptPassword(password);
-    })
-    .get(() => {
-        return this._password;
-    })
-
-// methods
-
-userSchema.methods.encryptPassword = function (password) {
-    if (!password) return '';
-    try {
-        return bcrypt.hashSync(password, this.salt);
-    } catch (err) {
-        return '';
-    }
-} */
 
 module.exports = mongoose.model('User', userSchema);
